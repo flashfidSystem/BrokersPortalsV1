@@ -1,7 +1,5 @@
 ﻿using BrokersPortalsV1.Class;
-using BrokersPortalsV1.Models;
-using BrokersPortalsV1.Security.Filter;
-using Microsoft.AspNetCore.Authentication;
+using BrokersPortalsV1.Models; 
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
