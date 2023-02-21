@@ -1,0 +1,27 @@
+
+@media (max-width: 575.98px) {
+    .mobile {
+        left: 9%;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .mobile {
+        left: 20%;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .mobile {
+        left: 25%;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .mobile {
+        left: 30%;
+    }
+}
+ @media (min-width: 1200px) {
+  .mobile {
+   left:35%;
+  }
+}
+ 

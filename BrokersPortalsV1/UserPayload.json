@@ -1,0 +1,57 @@
+{
+  "profile": {
+    "applicationUserId": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "userRole": "Broker",
+    "streetAddress": null,
+    "city": null,
+    "state": null,
+    "postalCode": null,
+    "companyId": null,
+    "company": null
+  },
+  "roles": [
+    {
+      "roleName": "Admin",
+      "userPermissions": [
+        {
+          "moduleName": "Dashboard",
+          "userProcesses": [
+            {
+              "processName": "UserDashboard",
+              "forms": [
+                {
+                  "formName": "CompanyDashboard",
+                  "formRoute": "/account/createuser",
+                  "canCreate": true,
+                  "canView": true,
+                  "canEdit": false,
+                  "canDelete": false
+                },
+                {
+                  "formName": "SetupFleet",
+                  "formRoute": "/account/activateuser",
+                  "canCreate": true,
+                  "canView": true,
+                  "canEdit": false,
+                  "canDelete": false
+                },
+                {
+                  "formName": "SetupBranch",
+                  "formRoute": "/account/activateuser",
+                  "canCreate": true,
+                  "canView": true,
+                  "canEdit": false,
+                  "canDelete": false
+                }
+              ]
+            }
+          ]
+
+        }
+
+      ]
+    }
+  ]
+}
