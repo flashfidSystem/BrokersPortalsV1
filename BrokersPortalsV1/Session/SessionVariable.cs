@@ -1,4 +1,4 @@
-﻿namespace BrokersPortalsV1
+﻿namespace BrokersPortalsV1.Session
 {
     public enum SessionVariable
     {
