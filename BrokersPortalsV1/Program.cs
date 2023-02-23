@@ -1,6 +1,6 @@
-using BrokersPortalsV1;
 using BrokersPortalsV1.Class;
 using BrokersPortalsV1.Security.Filter;
+using BrokersPortalsV1.Session;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +21,7 @@ builder.Services.AddScoped<CustomAuthenticationFilter>();
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".BrokersPortals.Session";
-    options.IdleTimeout = TimeSpan.FromMinutes(120);
+    options.IdleTimeout = TimeSpan.FromHours(120);
     options.Cookie.IsEssential = true;
 });
 

@@ -1,11 +1,12 @@
 ﻿using BrokersPortalsV1.Class;
-using BrokersPortalsV1.Models; 
+using BrokersPortalsV1.Models;
+using BrokersPortalsV1.Session;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace BrokersPortalsV1.Controllers
 {
-   
+
     public class AccountController : Controller
     {
         private readonly ISessionHandler _SessionHandler;

@@ -36,6 +36,16 @@ namespace BrokersPortalsV1.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Customers()
+        {
+            return View();
+        } 
+        [HttpPost]
+        public IActionResult Customers(int id)
+        {
+            return View();
+        }
 
 
         //forms
