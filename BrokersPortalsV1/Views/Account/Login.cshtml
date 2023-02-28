@@ -16,6 +16,9 @@
     ============================================ -->
     <title>Sign In</title>
     <link href="~/css/site1.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <script type="text/javascript">
         function WaterMarkFocus(txt, text) {
             if (txt.value == text) {
@@ -34,71 +37,42 @@
 
 </head>
 
-<body class="hold-transition login-page" style="background-color: #F3F6F9 ">
-     
-    <div>
+<body>
+
+    <div class="logo">
         @{
             if (TempData["Error"] != null)
             {
-                <div Style="z-index: 105; left:38%;font-family: Calibri; font-size: 15pt; position: absolute; top: 11%; background-color:#990000; width:21%;height:31px;color:#ffffff ;text-align: center;display:inline-block; border-radius:30%;">
+                <div Style=" font-family: Calibri; font-size: 15pt;padding:6px ;background-color:#990000; color:#ffffff ;text-align: center;display:inline-block; border-radius:9px;">
                     @TempData["Error"].ToString()
                 </div>
             }
         }
-        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-        <form asp-controller="Account" asp-action="Login" method="post">
+    </div>
+    <div class="login-block">
+        <h1>Login</h1>
 
-            <div class="mobile" style="z-index: 102; width: 381px; position: absolute; top: 17%;
-                height: 246px; border-radius:10px 10px; background-color: #ffffff">
-                <label id="Label1" Style="z-index: 105;font-family:'Corbel'; font-size:100%; text-decoration:underline; width:100%; font-weight:bold;
-                    left: 0%; position: absolute; top: 4%; text-align:center">INSURANCE MANAGEMENT PORTAL</label>
-                <div asp-validation-summary="ModelOnly"></div>
+        <form asp-controller="Account" asp-action="Login" method="post" autocomplete="off">
+            <span asp-validation-for="CompanyId" class="text-danger" Style="font-family:Calibri; font-size:8pt;
+                    color:#990000"></span>
+            <input Text="Enter Company ID" asp-for="CompanyId" autocomplete="Disabled" placeholder="Enter Company ID" />
 
-                <label id="Label4" asp-for="CompanyId" Style="z-index: 105; font-family: Calibri; font-size: 11pt; left:4%; position: absolute; top: 20%; text-align: right;display:inline-block" Width="10%">Company ID:</label>
-                <input id="txtCompanyId" Text="Enter Company ID" asp-for="CompanyId" onfocus="WaterMarkFocus(this,'Enter Company ID')" onblur="WaterMarkBlur(this,'Enter Company ID')" autocomplete="Disabled"
-                       Style="border-right: silver 1px solid;  height:20px;font:bold;border-top: silver 1px solid; font-family: Arial; font-size: 9pt; color: gray; z-index: 106; left: 33%; border-left: silver 1px solid; border-bottom: silver 1px solid; position: absolute; top: 19%; text-align: left; width: 61%" TabIndex="1" />
-                <span asp-validation-for="CompanyId" class="text-danger" Style="z-index: 100; font-family:Calibri; font-size:8pt;
-                    left: 33%; position: absolute; top: 29%; color:#990000;text-align:right"></span>
+            <span asp-validation-for="UserId" class="text-danger" Style="font-family:Calibri; font-size:8pt;
+                    color:#990000"></span>
+            <input Text="Enter Email Address" asp-for="UserId" autocomplete="Disabled" placeholder="Enter Username" />
 
-                <label id="Label3" Style="z-index: 101; font-family: Calibri; font-size: 11pt; left: 4%; position: absolute; top: 35%; text-align: right;" asp-for="UserId">Email Address:</label>
-                <input id="txtUserName" Text="Enter Email Address" asp-for="UserId" onfocus="WaterMarkFocus(this,'Enter Email Address')" onblur="WaterMarkBlur(this,'Enter Email Address')" autocomplete="Disabled"
-                       Style="border-right: silver 1px solid; height:20px;border-top: silver 1px solid; font-family: Arial; font-size: 9pt; color:gray; z-index: 103; border-left: silver 1px solid; border-bottom: silver 1px solid; position: absolute; top: 35%; text-align: left; left:33%;width:61%;" TabIndex="2" />
-                <span asp-validation-for="UserId" Style="z-index: 100; font-family:Calibri; font-size:8pt;
-                    left: 33%; position: absolute; top: 45%; color:#990000;text-align:right"></span>
+            <span asp-validation-for="Password" class="text-danger" Style="font-family:Calibri; font-size:8pt;
+                    color:#990000"></span>
+            <input Text="Enter Password" asp-for="Password" autocomplete="Disabled" type="password" placeholder="Enter Password" />
 
-                <label id="Label2" Style="z-index: 100; font-family:Calibri; font-size:11pt;
-                    left: 4%; position: absolute; top: 52%; text-align:right" Width="88px" asp-for="Password">Password:</label>
-                <input id="txtPassword" Text="Enter Password" asp-for="Password" onfocus="WaterMarkFocus(this,'Enter Password')" onblur="WaterMarkBlur(this,'Enter Password')" autocomplete="Disabled"
-                       Style="border-right: silver 1px solid; border-top: silver 1px solid;  height:20px;
-                    z-index: 102; left: 33%; border-left: silver 1px solid; border-bottom: silver 1px solid;
-                    position: absolute; top: 52%; text-align: left; width:61%; font-family:Arial;font-size:9pt; " type="password" TabIndex="3" />
-                <span asp-validation-for="Password" Style="z-index: 100; font-family:Calibri; font-size:8pt;
-                    left: 33%; position: absolute; top: 62%; color:#990000;text-align:right"></span>
-                &nbsp;
-
-
-                <label id="lblError"
-                       Style="z-index: 103; height:56px;font-size:10pt;left: 0px; color:white; font-family:Corbel;position: absolute; top: 272px;
-                    text-align: center; width:392px; font:bold"></label>
-                <a id="LinkBack" href="/Home/Index"
-                   Style="z-index: 104; font-size:12pt; font-family:Corbel;color:#696969; left: 124px; position: absolute; top: 170px;text-decoration:none" ; Width="104px">Back to Home</a>
-                @*<div id="Div2" style="border-right: silver 1px solid; border-top: silver 1px solid;
-                z-index: 125; left: 259px; border-left: silver 1px solid; width: 96px; border-bottom: silver 1px solid;
-                position: absolute; top: 162px; height: 40px; background-color: #0099cc; border-radius: 5px 5px">*@
-
-                <input id="cmdLogin" type="submit" value="Sign In" BorderStyle="None"
-                       style="border-right: silver 1px solid; border-top: silver 1px solid;
-                    z-index: 125; left: 268px; border-left: silver 1px solid; width: 96px; border-bottom: silver 1px solid; color:#ffffff;
-                    position: absolute; top: 162px; height: 40px; background-color: #990000; border-radius: 5px 5px" TabIndex="3" />
-                @*<input id="cmdLogin" type="submit" value="Sign In" BorderStyle="None"
-                Style="z-index: 104;  color:#FFFFFF;font-size:13pt;
-                position: absolute; top: 3px; background-color: #0099cc; font:bold; border:none;font-family:Corbel;width: 80px; height: 22px; text-align:center;line-height:22pt" TabIndex="3"
-                />*@
-                @*</div>*@
-            </div>
-
+            <button>Sign In</button>
         </form>
+        <a href="#" style="padding:5px; color:gray;">Forget password?</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    @await Html.PartialAsync("_notificationPartial")
 </body>
 </html>  

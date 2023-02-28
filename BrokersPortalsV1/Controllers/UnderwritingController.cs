@@ -79,5 +79,15 @@ namespace BrokersPortalsV1.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Test()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Test(int id)
+        {
+            return View();
+        }
     }
 }

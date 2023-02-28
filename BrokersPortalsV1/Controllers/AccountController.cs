@@ -1,4 +1,5 @@
 ﻿using BrokersPortalsV1.Class;
+using BrokersPortalsV1.Enum;
 using BrokersPortalsV1.Models;
 using BrokersPortalsV1.Session;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using Newtonsoft.Json;
 namespace BrokersPortalsV1.Controllers
 {
 
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly ISessionHandler _SessionHandler;
         private readonly IUserPermission _UserPermissionTo;
@@ -42,11 +43,12 @@ namespace BrokersPortalsV1.Controllers
                         _SessionHandler.setSession(SessionVariable.LOGGEDUSER, myDeserializedClass);
                       
                         _UserPermissionTo.initialize();
+                        Notify("Login successfully");
                         return RedirectToAction("CompanyDashboard", "Dashboard");
                     }
                     else
                     {
-                        TempData["Error"] = "Invalid Credentials";
+                        Notify("Invalid Credentials", notificationType: NotificationType.error);
                         return View();
                     }
                    

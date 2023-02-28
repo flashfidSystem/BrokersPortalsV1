@@ -12,8 +12,8 @@ builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<SessionHandler>();
 builder.Services.AddTransient<CustomAuthenticationFilter>();
-builder.Services.AddScoped<ISessionHandler,SessionHandler>();
-builder.Services.AddScoped<IUserPermission,UserPermissionTo>();
+builder.Services.AddScoped<ISessionHandler, SessionHandler>();
+builder.Services.AddScoped<IUserPermission, UserPermissionTo>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<CustomAuthenticationFilter>();
@@ -51,6 +51,6 @@ app.UseAuthorization();
 app.UseStatusCodePages();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
