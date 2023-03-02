@@ -60,6 +60,21 @@ namespace BrokersPortalsV1.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult MotorForm()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult MotorForm(int id)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
+        [HttpGet]
         public IActionResult ViewQuotes()
         {
             return View();

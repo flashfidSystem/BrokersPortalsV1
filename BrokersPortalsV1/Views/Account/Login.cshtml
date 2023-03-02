@@ -6,7 +6,6 @@
 
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,27 +15,13 @@
     ============================================ -->
     <title>Sign In</title>
     <link href="~/css/site1.css" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-  
 </head>
-
 <body>
-
-    <div class="logo">
-        @{
-            if (TempData["Error"] != null)
-            {
-                <div Style=" font-family: Calibri; font-size: 15pt;padding:6px ;background-color:#990000; color:#ffffff ;text-align: center;display:inline-block; border-radius:9px;">
-                    @TempData["Error"].ToString()
-                </div>
-            }
-        }
+    <div class="logo"> 
     </div>
     <div class="login-block">
         <h1>Login</h1>
-
         <form asp-controller="Account" asp-action="Login" method="post" autocomplete="off">
             <span asp-validation-for="CompanyId" class="text-danger" Style="font-family:Calibri; font-size:8pt;
                     color:#990000"></span>
@@ -50,14 +35,14 @@
                     color:#990000"></span>
             <input Text="Enter Password" asp-for="Password" autocomplete="Disabled" type="password" placeholder="Enter Password" />
 
-            <button>Sign In</button>
+            <button type="submit">Sign In</button>
         </form>
         <a href="#" style="padding:5px; color:gray;">Forget password?</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+    @await Html.PartialAsync("_ValidationScriptsPartial")
     @await Html.PartialAsync("_notificationPartial")
 </body>
 </html>  
