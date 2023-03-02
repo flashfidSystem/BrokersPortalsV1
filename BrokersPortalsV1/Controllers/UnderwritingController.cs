@@ -50,32 +50,32 @@ namespace BrokersPortalsV1.Controllers
 
         //forms
         [HttpGet]
-        public IActionResult GenerateQoute()
+        public IActionResult GenerateQuote()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult GenerateQoute(int id)
+        public IActionResult GenerateQuote(int id)
         {
             return View();
         }
         [HttpGet]
-        public IActionResult ViewQoutes()
+        public IActionResult ViewQuotes()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult ViewQoutes(int id)
+        public IActionResult ViewQuotes(int id)
         {
             return View();
         }
         [HttpGet]
-        public IActionResult ConvertQoutes()
+        public IActionResult ConvertQuote()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult ConvertQoutes(int id)
+        public IActionResult ConvertQuote(int id)
         {
             return View();
         }
@@ -86,6 +86,27 @@ namespace BrokersPortalsV1.Controllers
         }
         [HttpPost]
         public IActionResult Test(int id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Products()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Products(int id)
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Packages()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Packages(int id)
         {
             return View();
         }
