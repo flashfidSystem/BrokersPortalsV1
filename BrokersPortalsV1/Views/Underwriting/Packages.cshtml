@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Packages";
+}
+     <!-- Other Elements Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+
+
+
+        <div class="col-sm-12 col-xl-10 mx-auto">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Packages</h6>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                    aria-expanded="true" aria-controls="flush-collapseOne">
+                                3rd Party Insurance
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Third-party insurance is insurance that covers you if you injure someone or damage someone's property.
+                                <div>  <a asp-controller="Underwriting" asp-action="GenerateQuote"> Generate a quote</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Comprehensive Insurance
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Comprehensive insurance is a coverage that helps pay to replace or repair your vehicle if it's stolen or damaged in an incident that's not a collision.
+                                <div>  <a asp-controller="Underwriting" asp-action="GenerateQuote"> Generate a quote</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                    aria-expanded="false" aria-controls="flush-collapseThree">
+                                3rd Party and Theft Insurance
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                Third Party, Fire and Theft Car Insurance is a basic form of Car Insurance that provides cover for accidental damage caused to another person’s vehicle. In addition to this, your car is covered in the event of theft, hijacking or fire. This type of insurance does not extend cover for accidental damage to your own vehicle.
+                                <div>  <a asp-controller="Underwriting" asp-action="GenerateQuote"> Generate a quote</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Other Elements End -->

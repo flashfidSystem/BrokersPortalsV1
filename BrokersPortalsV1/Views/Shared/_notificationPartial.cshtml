@@ -1,9 +1,7 @@
 ﻿
 <script>
     var msg = @(TempData["Message"] != null ? Html.Raw(TempData["Message"]) : Html.Raw("undefined"));
-
-    console.log(msg)
-
+     
     if (msg) {
         if (msg.provider == "sweetAlert") {
             swal.fire({
