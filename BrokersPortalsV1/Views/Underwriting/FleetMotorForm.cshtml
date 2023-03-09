@@ -1,0 +1,58 @@
+﻿@model FleetMotor;
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-md-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Motor Insurance(Fleet)</h6>
+                <form class="row" asp-controller="Underwriting" asp-action="MotorForm" autocomplete="off" method="post">
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="VehicleList" class="form-label">Upload Vehicle List:</label>
+                        <span asp-validation-for="VehicleList" class="text-danger"></span>
+                        <input type="file" asp-for="VehicleList" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="ProposedRate" class="form-label">Proposed Rate:</label>
+                        <span asp-validation-for="ProposedRate" class="text-danger"></span>
+                        <input type="number" asp-for="ProposedRate" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-12">
+                        <label asp-for="Comment" class="form-label">Comment:</label>
+                        <span asp-validation-for="Comment" class="text-danger"></span>
+                        <textarea multiple class="form-control" asp-for="Comment" style="height:150px;"></textarea>
+                    </div>  
+                    <div class="mb-3  d-flex flex-row-reverse bd-highlight ">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form End -->
+ 
+<script type="text/javascript">
+    //restrict upload file type
+    $('INPUT[type="file"]').change(function () {
+        var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png': 
+            case 'doc':
+            case 'pdf':
+                $('#uploadButton').attr('disabled', false);
+                break;
+            default:
+                alert('Only jpg, jpeg, png, doc, pdf file type please!!');
+                this.value = '';
+        }
+
+        // restrict file size in 3 MB
+        if ((this.files[0].size) / 1024 > 3000) {
+            alert("Please check upload image not over 3MB");
+            this.value = '';
+        }
+
+    });
+</script>

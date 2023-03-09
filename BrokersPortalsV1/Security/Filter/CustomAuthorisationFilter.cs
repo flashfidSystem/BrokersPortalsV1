@@ -7,11 +7,11 @@ namespace BrokersPortalsV1.Security.Filter
 {
     public class CustomAuthorisationFilter : Attribute, IAuthorizationFilter
     {
-        private readonly IUserPermission _userPermission;
-        public CustomAuthorisationFilter(IUserPermission userPermission)
-        {
-            _userPermission = userPermission;
-        }
+        //private readonly IUserPermission _userPermission;
+        //public CustomAuthorisationFilter(IUserPermission userPermission)
+        //{
+        //    _userPermission = userPermission;
+        //}
 
         private readonly UserActionType actionFunctions; 
         private readonly FormsModule moduleFunction;

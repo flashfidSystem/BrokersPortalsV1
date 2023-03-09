@@ -1,0 +1,132 @@
+﻿@model Motor;
+<!-- Form Start -->
+@*<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-md-12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Travel Agent Insurance</h6>
+                <form class="row" asp-controller="Underwriting" asp-action="MotorForm" autocomplete="off" method="post">
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="InsuredName" class="form-label">Insured Name:</label>
+                        <span asp-validation-for="InsuredName" class="text-danger"></span>
+                        <input type="text" asp-for="InsuredName" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="PolicyHolder" class="form-label">Policy Holder:</label>
+                        <span asp-validation-for="PolicyHolder" class="text-danger" ></span>
+                        <input type="text" asp-for="PolicyHolder" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="Occupation" class="form-label">Occupation:</label>
+                        <span asp-validation-for="Occupation" class="text-danger" ></span>
+                        <input type="text" class="form-control" asp-for="Occupation">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="PhoneNumber" class="form-label">Phone Number:</label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <input type="tel" asp-for="PhoneNumber" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="TypeCover" class="form-label">Type of Cover:</label>
+                        <span asp-validation-for="TypeCover" class="text-danger"></span>
+                        <select asp-for="TypeCover" class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Please Select Cover</option>
+                            <option value="1">3rd Party</option>
+                            <option value="2">Comprehensive</option>
+                            <option value="3">3rd Party & Theft</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="EmailAddress" class="form-label">Email Address:</label>
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        <input type="email" class="form-control" asp-for="EmailAddress"
+                               aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="MakeVehicle" class="form-label">Make of Vehicle:</label>
+                        <span asp-validation-for="MakeVehicle" class="text-danger"></span>
+                        <input type="text" asp-for="MakeVehicle" class="form-control">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="TypeUsage" class="form-label">Type of Usage:</label>
+                        <span asp-validation-for="TypeUsage" class="text-danger"></span>
+                        <select asp-for="TypeUsage" class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Please Select Mode of Payment</option>
+                            <option value="1">Private</option>
+                            <option value="2">Commercial</option>
+                            <option value="3">Articulated</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="YearMake" class="form-label">Year of Make:</label>
+                        <span asp-validation-for="YearMake" class="text-danger"></span>
+                        <input type="text" class="form-control" asp-for="YearMake">
+                    </div>
+
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="RegNumber" class="form-label">Reg Number:</label>
+                        <span asp-validation-for="RegNumber" class="text-danger"></span>
+                        <input type="number" class="form-control" asp-for="RegNumber">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="VehicleValue" class="form-label">Vehicle Value:</label>
+                        <span asp-validation-for="VehicleValue" class="text-danger"></span>
+                        <input type="number" class="form-control" asp-for="VehicleValue">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="PremiumRate"  class="form-label">Premium Rate:</label>
+                        <span asp-validation-for="PremiumRate" class="text-danger"></span>
+                        <input type="number" class="form-control" asp-for="PremiumRate">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label  asp-for="StartDate"  class="form-label">Start Date:</label>
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                        <input type="date" class="form-control" asp-for="StartDate">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="CoverPeriod" class="form-label">Cover Period:</label>
+                        <span asp-validation-for="CoverPeriod" class="text-danger"></span>
+                        <input type="text" class="form-control" asp-for="CoverPeriod">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="InsuredValue" class="form-label">Insured Value(N):</label>
+                        <span asp-validation-for="InsuredValue" class="text-danger"></span>
+                        <input type="number" class="form-control" asp-for="InsuredValue">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="TransDate" class="form-label">Trans Date:</label>
+                        <span asp-validation-for="TransDate" class="text-danger"></span>
+                        <input type="date" class="form-control" asp-for="TransDate">
+                    </div>
+
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="ModePayment" class="form-label">Mode of Payment:</label>
+                        <span asp-validation-for="ModePayment" class="text-danger"></span>
+                        <select class="form-select mb-3" aria-label="Default select example" asp-for="ModePayment">
+                            <option selected>Please Select Mode of Payment</option>
+                            <option value="1">Self Insured</option>
+                            <option value="2">Company Insured</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label  asp-for="Premium"  class="form-label">Permium:</label>
+                        <span asp-validation-for="Premium" class="text-danger"></span>
+                        <input type="number" class="form-control" asp-for="Premium">
+                    </div>
+                    <div class="mb-3 col-xl-6">
+                        <label asp-for="Address" class="form-label">Address:</label>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                        <textarea multiple class="form-control" asp-for="Address" style="height: 80px;"></textarea>
+                    </div>
+
+                    <div class="mb-3  d-flex flex-row-reverse bd-highlight ">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- Form End -->

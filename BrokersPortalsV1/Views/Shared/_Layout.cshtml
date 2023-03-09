@@ -1,9 +1,10 @@
 ﻿@using BrokersPortalsV1.Class
-@inject IUserPermission userPermission
+@using BrokersPortalsV1.Session
+@inject ISessionHandler sessionHandler
 @using BrokersPortalsV1.Enum
 @{
     var noDisplay = "no-display";
-    //var v = userPermission;
+    var userDetails = (sessionHandler.getSession<ProfileResponse>(SessionVariable.LOGGEDUSER).data.userData);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -44,8 +45,19 @@
         .no-display {
             display: none !important;
         }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
+     
 </head>
 
 <body>
@@ -69,8 +81,8 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">CADBURY</h6>
-                        <span>Broker</span>
+                        <h6 class="mb-0">@userDetails.lastName @userDetails.firstName</h6>
+                        @*<span>Broker</span>*@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
