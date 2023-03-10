@@ -5,48 +5,80 @@ namespace BrokersPortalsV1.Models
 {
     public class Motor
     {
+
+        [DisplayName("Broker Id")]
+        public string? brokerId { get; set; }
+        [DisplayName("Product Name")]
+        public string? productName { get; set; } = "Motor Policy";
         [Required]
+        [DisplayName("Type Of Cover")]
+        public string? typeOfCover { get; set; }
         [DisplayName("Insured Name")]
-        public string InsuredName { get; set; }
+        [Required]
+        public string? insuredName { get; set; }
         [DisplayName("Occupation")]
-        public string Occupation { get; set; }
-        [DisplayName("Email Address")]
-        public string EmailAddress { get; set; }
         [Required]
-        [DisplayName("Type Cover")]
-        public string TypeCover { get; set; }
-        [DisplayName("Make Vehicle")]
-        public string MakeVehicle { get; set; }
+        public string? occupation { get; set; }
+        [DisplayName("EmailAddress")]
         [Required]
-        [DisplayName("Year Make")]
-        public string YearMake { get; set; }
+        public string? emailAddress { get; set; }
+        [DisplayName("Vehicle Make")]
+        [Required]
+        public string? vehicleMake { get; set; }
+        [DisplayName("Year Of Make")]
+        [Required]
+        public string? yearOfMake { get; set; }
+        [DisplayName("Insurance Start Date")]
+        [Required]
+        public DateTime insuranceStartDate { get; set; }
         [DisplayName("Vehicle Value")]
-        public int VehicleValue { get; set; }
         [Required]
-        [DisplayName("Start Date")]
-        public DateTime StartDate { get; set; }
-        [DisplayName("Insured Value")]
-        public int InsuredValue { get; set; }
-        [DisplayName("Mode Payment")]
-        public string ModePayment { get; set; }
-        [DisplayName("Policy Holder")]
-        public string PolicyHolder { get; set; }
-        [DisplayName("Phone Number")]
-        public int PhoneNumber { get; set; }
+        public decimal vehicleValue { get; set; } 
+
+        public DateTime startDate { get; set; }=DateTime.Now; 
+
+        public Decimal insuredValue { get; set; } = 0;
+
+        [DisplayName("Mode Of Payment")]
+        [Required]
+        public string? modeOfPayment { get; set; }
+        [DisplayName("PolicyHolder")]
+        [Required]
+        public string? policyHolder { get; set; }
+        [DisplayName("Mobile")]
+        [Required]
+        public string? mobile { get; set; }
         [DisplayName("Address")]
-        public string Address { get; set; }
         [Required]
-        [DisplayName("Type Usage")]
-        public string TypeUsage { get; set; }
-        [DisplayName("Reg Number")]
-        public int RegNumber { get; set; }
-         [DisplayName("Premium Rate")]
-        public int PremiumRate { get; set; }
+        public string? address { get; set; }
+        [DisplayName("Type Of Usage")]
+        [Required]
+        public string? typeOfUsage { get; set; }
+        [DisplayName("Registration Number")]
+        [Required]
+        public string? registrationNumber { get; set; }
+        [DisplayName("Premium Rate")]
+        [Required]
+        public int premiumRate { get; set; }
         [DisplayName("Cover Period")]
-        public string CoverPeriod { get; set; }
-        [DisplayName("Trans Date")]
-        public DateTime TransDate { get; set; }
+        [Required]
+        public int coverPeriod { get; set; }
+        [DisplayName("Transaction Date")]
+        [Required]
+        public DateTime transactionDate { get; set; }
         [DisplayName("Premium")]
-        public int Premium { get; set; }
+        [Required]
+        public decimal premium { get; set; }
+        [DisplayName("Valid Id")]
+        [Required]
+        public string? idUploadUrl { get; set; }
+        [DisplayName("Utility Bill")]
+        [Required]
+        public string? utilityBillUploadUrl { get; set; }
+        [DisplayName("vehicle License")]
+        [Required]
+        public string? vehicleLicenseUploadUrl { get; set; }
+        public int packageId { get; set; } = 0;
+
     }
 }

@@ -1,132 +1,456 @@
 ﻿@model Motor;
-<!-- Form Start -->
+<style type="text/css">
+
+    form {
+        margin: 0px auto;
+        padding: 10px 50px 54px 30px;
+        width: 100%;
+    }
+
+    .tab p {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+    }
+
+    input {
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 17px;
+        border: 1px solid #aaaaaa;
+    }
+
+    .index-btn-wrapper {
+        display: flex;
+    }
+
+    .index-btn {
+        background: #990000;
+        color: #ffffff;
+        border: none;
+        margin: 20px 15px 0 0;
+        padding: 10px 20px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .index-btn:hover {
+            opacity: 0.8;
+        }
+
+    .step {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        margin: 0 2px;
+        color: white;
+        background: #ab2b2b;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.25;
+    }
+
+</style>
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-md-12 col-xl-12">
-            <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Motor Insurance</h6>
-                <form class="row" asp-controller="Underwriting" asp-action="MotorForm" autocomplete="off" method="post">
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="InsuredName" class="form-label">Insured Name:</label>
-                        <span asp-validation-for="InsuredName" class="text-danger"></span>
-                        <input type="text" asp-for="InsuredName" class="form-control">
+            <div class="bg-light rounded h-100 p-2">
+                <form id="myForm" action="MotorForm" method="post" autocomplete="off">
+                    <h6 class="mb-4">Motor Insurance</h6>
+                    <div style="text-align:center; padding-top:5px; padding-bottom:30px;">
+                        <span class="step" id="step-1">1</span>
+                        <span class="step" id="step-2">2</span>
                     </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="PolicyHolder" class="form-label">Policy Holder:</label>
-                        <span asp-validation-for="PolicyHolder" class="text-danger" ></span>
-                        <input type="text" asp-for="PolicyHolder" class="form-control">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="Occupation" class="form-label">Occupation:</label>
-                        <span asp-validation-for="Occupation" class="text-danger" ></span>
-                        <input type="text" class="form-control" asp-for="Occupation">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="PhoneNumber" class="form-label">Phone Number:</label>
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        <input type="tel" asp-for="PhoneNumber" class="form-control">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="TypeCover" class="form-label">Type of Cover:</label>
-                        <span asp-validation-for="TypeCover" class="text-danger"></span>
-                        <select asp-for="TypeCover" class="form-select mb-3" aria-label="Default select example">
-                            <option selected>Please Select Cover</option>
-                            <option value="1">3rd Party</option>
-                            <option value="2">Comprehensive</option>
-                            <option value="3">3rd Party & Theft</option>
-                        </select>
+                    <input type="text" asp-for="packageId" class="form-control IRequired" type="hidden">
+                    <div class="tab" id="tab-1">
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="insuredName" class="form-label">Insured Name:</label>
+                                <span asp-validation-for="insuredName" class="text-danger"></span>
+                                <input type="text" asp-for="insuredName" class="form-control IRequired">
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="policyHolder" class="form-label">Policy Holder:</label>
+                                <span asp-validation-for="policyHolder" class="text-danger"></span>
+                                <input type="text" asp-for="policyHolder" class="form-control IRequired">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="occupation" class="form-label">Occupation:</label>
+                                <span asp-validation-for="occupation" class="text-danger"></span>
+                                <input type="text" class="form-control IRequired" asp-for="occupation">
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="mobile" class="form-label">Phone Number:</label>
+                                <span asp-validation-for="mobile" class="text-danger"></span>
+                                <input type="tel" asp-for="mobile" class="form-control IRequired">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="utilityBillUploadUrl" class="form-label">Utility Bill:</label>
+                                <span asp-validation-for="utilityBillUploadUrl" class="text-danger"></span>
+                                <input type="file" class="form-control IRequired" asp-for="utilityBillUploadUrl">
+                            </div>
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="emailAddress" class="form-label">Email Address:</label>
+                                <span asp-validation-for="emailAddress" class="text-danger"></span>
+                                <input type="email" class="form-control IRequired" asp-for="emailAddress"
+                                       aria-describedby="emailHelp">
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="idUploadUrl" class="form-label">Valid ID:</label>
+                                <span asp-validation-for="idUploadUrl" class="text-danger"></span>
+                                <input type="file" class="form-control IRequired" asp-for="idUploadUrl">
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="coverPeriod" class="form-label">Cover Period:</label>
+                                <span asp-validation-for="coverPeriod" class="text-danger"></span>
+                                <input type="number" class="form-control IRequired" asp-for="coverPeriod">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-xl-12">
+                                <label asp-for="address" class="form-label">Address:</label>
+                                <span asp-validation-for="address" class="text-danger"></span>
+                                <textarea multiple class="form-control IRequired" asp-for="address" style="height: 100px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="index-btn-wrapper">
+                            <div class="index-btn" onclick="return run(1, 2);">Next</div>
+                        </div>
                     </div>
 
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="EmailAddress" class="form-label">Email Address:</label>
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                        <input type="email" class="form-control" asp-for="EmailAddress"
-                               aria-describedby="emailHelp">
+                    <div class="tab" id="tab-2">
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="vehicleLicenseUploadUrl" class="form-label">Vehicle License:</label>
+                                <span asp-validation-for="vehicleLicenseUploadUrl" class="text-danger"></span>
+                                <input type="file" class="form-control IRequired" asp-for="vehicleLicenseUploadUrl">
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="transactionDate" class="form-label">Trans Date:</label>
+                                <span asp-validation-for="transactionDate" class="text-danger"></span>
+                                <input type="date" class="form-control IRequired" asp-for="transactionDate">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="typeOfCover" class="form-label">Type of Cover:</label>
+                                <span asp-validation-for="typeOfCover" class="text-danger"></span>
+                                <select asp-for="typeOfCover" class="form-select mb-3 IRequired" aria-label="Default select example" asp-items="@(new SelectList(ViewBag.Packages,"packageName","packageName"))">
+                                    <option selected value="">Please Select</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="typeOfUsage" class="form-label">Type of Usage:</label>
+                                <span asp-validation-for="typeOfUsage" class="text-danger"></span>
+                                <select asp-for="typeOfUsage" class="form-select mb-3 IRequired" aria-label="Default select example">
+                                    <option selected value="">Please Select</option>
+                                    <option value="1">Private</option>
+                                    <option value="2">Commercial</option>
+                                    <option value="3">Articulated</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="yearOfMake" class="form-label">Year of Make:</label>
+                                <span asp-validation-for="yearOfMake" class="text-danger"></span>
+                                <input type="text" class="form-control IRequired" asp-for="yearOfMake">
+                            </div>
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="registrationNumber" class="form-label">Reg Number:</label>
+                                <span asp-validation-for="registrationNumber" class="text-danger"></span>
+                                <input type="text" class="form-control IRequired" asp-for="registrationNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="vehicleValue" class="form-label">Vehicle Value:</label>
+                                <span asp-validation-for="vehicleValue" class="text-danger"></span>
+                                <input type="number" class="form-control IRequired" asp-for="vehicleValue" min="0">
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="premiumRate" class="form-label">Premium Rate:</label>
+                                <span asp-validation-for="premiumRate" class="text-danger"></span>
+                                <input type="number" class="form-control IRequired" asp-for="premiumRate" readonly min="0">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="vehicleMake" class="form-label">Make of Vehicle:</label>
+                                <span asp-validation-for="vehicleMake" class="text-danger"></span>
+                                <input type="text" asp-for="vehicleMake" class="form-control IRequired">
+                            </div>
+
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="insuranceStartDate" class="form-label">Start Date:</label>
+                                <span asp-validation-for="insuranceStartDate" class="text-danger"></span>
+                                <input type="date" class="form-control IRequired" asp-for="insuranceStartDate">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-xl-6">
+                                <label asp-for="modeOfPayment" class="form-label">Mode of Payment:</label>
+                                <span asp-validation-for="modeOfPayment" class="text-danger"></span>
+                                <select class="form-select  mb-3 mt-2 IRequired" aria-label="Default select example" asp-for="modeOfPayment">
+                                    <option selected value="">Please Select</option>
+                                    <option value="1">Self Insured</option>
+                                    <option value="2">Company Insured</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <div class="row">
+                                    <label asp-for="premium" class="form-label">Permium(N):</label>
+                                    <span asp-validation-for="premium" class="text-danger"></span>
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <input type="number" class="form-control IRequired" asp-for="premium" readonly  min="0">
+                                        <a class="" style="background:#990000; height:34px;  color:#fff;    margin: 13px 0px 0 0; padding: 4px 5px; font-size: 17px; cursor: pointer;" id="BtnCalculatePremium">Calculate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="index-btn-wrapper">
+                            <div class="index-btn" onclick="return run(2, 1);">Previous</div>
+                            <div class="index-btn" onclick="return run(2, 3);">Next</div>
+                        </div>
                     </div>
 
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="MakeVehicle" class="form-label">Make of Vehicle:</label>
-                        <span asp-validation-for="MakeVehicle" class="text-danger"></span>
-                        <input type="text" asp-for="MakeVehicle" class="form-control">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="TypeUsage" class="form-label">Type of Usage:</label>
-                        <span asp-validation-for="TypeUsage" class="text-danger"></span>
-                        <select asp-for="TypeUsage" class="form-select mb-3" aria-label="Default select example">
-                            <option selected>Please Select Mode of Payment</option>
-                            <option value="1">Private</option>
-                            <option value="2">Commercial</option>
-                            <option value="3">Articulated</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="YearMake" class="form-label">Year of Make:</label>
-                        <span asp-validation-for="YearMake" class="text-danger"></span>
-                        <input type="text" class="form-control" asp-for="YearMake">
+
+                    <div class="tab" id="tab-3">
+                        <div class="col-sm-12 col-xl-12">
+                            <div class="bg-light rounded h-100 p-4">
+                                <div class="row">
+                                <h6 class="mb-4">Quotation Details</h6>
+                                </div>
+                                <table class="table table-bordered">
+                                 
+                                    <tbody>
+                                        <tr>                                            
+                                            <th>Insured Name</th>
+                                            <td id="tdInsuredName"></td>
+                                        </tr>
+                                        <tr>                                           
+                                            <th>Product Category</th>
+                                            <td id="tdProductCategory"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Type of Cover</th>
+                                            <td id="tdTypeofCover"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Paymet Frequenct</th>
+                                            <td id="tdPaymetFrequency"></td> 
+                                        </tr>
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <td id="tdStartDate"></td> 
+                                        </tr>
+                                        <tr>
+                                            <th>Vehicle Value</th>
+                                            <td id="tdVehicleValue"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Premium Amount(N)</th>
+                                            <td id="tdPremiumAmount"></td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="index-btn-wrapper">
+                            <div class="index-btn" onclick="return run(3, 2);">Previous</div>
+                            <button type="submit" class="index-btn" id="RequestQuote">Submit</button>
+                            <div class="index-btn">Download</div>
+                        </div>
                     </div>
 
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="RegNumber" class="form-label">Reg Number:</label>
-                        <span asp-validation-for="RegNumber" class="text-danger"></span>
-                        <input type="number" class="form-control" asp-for="RegNumber">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="VehicleValue" class="form-label">Vehicle Value:</label>
-                        <span asp-validation-for="VehicleValue" class="text-danger"></span>
-                        <input type="number" class="form-control" asp-for="VehicleValue">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="PremiumRate"  class="form-label">Premium Rate:</label>
-                        <span asp-validation-for="PremiumRate" class="text-danger"></span>
-                        <input type="number" class="form-control" asp-for="PremiumRate">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label  asp-for="StartDate"  class="form-label">Start Date:</label>
-                        <span asp-validation-for="StartDate" class="text-danger"></span>
-                        <input type="date" class="form-control" asp-for="StartDate">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="CoverPeriod" class="form-label">Cover Period:</label>
-                        <span asp-validation-for="CoverPeriod" class="text-danger"></span>
-                        <input type="text" class="form-control" asp-for="CoverPeriod">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="InsuredValue" class="form-label">Insured Value(N):</label>
-                        <span asp-validation-for="InsuredValue" class="text-danger"></span>
-                        <input type="number" class="form-control" asp-for="InsuredValue">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="TransDate" class="form-label">Trans Date:</label>
-                        <span asp-validation-for="TransDate" class="text-danger"></span>
-                        <input type="date" class="form-control" asp-for="TransDate">
-                    </div>
-
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="ModePayment" class="form-label">Mode of Payment:</label>
-                        <span asp-validation-for="ModePayment" class="text-danger"></span>
-                        <select class="form-select mb-3" aria-label="Default select example" asp-for="ModePayment">
-                            <option selected>Please Select Mode of Payment</option>
-                            <option value="1">Self Insured</option>
-                            <option value="2">Company Insured</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label  asp-for="Premium"  class="form-label">Permium:</label>
-                        <span asp-validation-for="Premium" class="text-danger"></span>
-                        <input type="number" class="form-control" asp-for="Premium">
-                    </div>
-                    <div class="mb-3 col-xl-6">
-                        <label asp-for="Address" class="form-label">Address:</label>
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                        <textarea multiple class="form-control" asp-for="Address" style="height: 80px;"></textarea>
-                    </div>
-
-                    <div class="mb-3  d-flex flex-row-reverse bd-highlight ">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- Form End -->
+
+<script>
+    // Default tab
+    $(".tab").css("display", "none");
+    $("#tab-1").css("display", "block");
+
+    function run(hideTab, showTab) {
+        if (hideTab < showTab) { // If not press previous button
+            // Validation if press next button
+            var currentTab = 0;
+            x = $('#tab-' + hideTab);
+            y = $(x).find(".IRequired")
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    $(y[i]).valid(); 
+                    return false;
+                }
+            }
+            //var cInsuredName = $('input[id=\'InsuredName\']').val();
+            //var cPolicyHolder = $('input[id=\'PolicyHolder\']').val();
+            //var cOccupation = $('input[id=\'Occupation\']').val();
+            //var cPhoneNumber = $('input[id=\'PhoneNumber\']').val();
+            //var cUtilityBill = $('input[id=\'UtilityBill\']').val();
+            //var cEmailAddress = $('input[id=\'EmailAddress\']').val();
+            //var cValidID = $('input[id=\'ValidID\']').val();
+            //var cCoverPeriod = $('input[id=\'CoverPeriod\']').val();
+            //var cAddress = $('textarea[id=\'Address\']').val();
+
+            ////var cVehicleLicense = $('input[id=\'VehicleLicense\']').val();
+
+            // if(cInsuredName==""){
+            //    $('input[id=\'InsuredName\']').valid(); 
+            //    return false;
+            //} if (cPolicyHolder == "") {
+            //    $('input[id=\'PolicyHolder\']').valid(); 
+            //    return false;
+            // }if (cOccupation == "") {
+            //    $('input[id=\'Occupation\']').valid(); 
+            //    return false;
+            //} if (cPhoneNumber == "") {
+            //    $('input[id=\'PhoneNumber\']').valid();
+            //    return false;
+            //} if (cUtilityBill == "") {
+            //    $('input[id=\'UtilityBill\']').valid();
+            //    return false;
+            //} if (cEmailAddress == "") {
+            //    $('input[id=\'EmailAddress\']').valid();
+            //    return false;
+            //} if (cValidID == "") {
+            //    $('input[id=\'ValidID\']').valid();
+            //    return false;
+            //} if (cCoverPeriod == "") {
+            //    $('input[id=\'CoverPeriod\']').valid();
+            //    return false;
+            //} if (cAddress == "") {
+            //    $('input[id=\'Address\']').valid();
+            //    return false;
+            // }
+             
+             //if (cVehicleLicense == "") {
+             //   $('input[id=\'VehicleLicense\']').valid();
+             //   return false;
+             //}
+              
+        }
+
+        // Progress bar
+        for (i = 1; i < showTab; i++) {
+            $("#step-" + i).css("opacity", "1");
+        }
+
+        // Switch tab
+        $("#tab-" + hideTab).css("display", "none");
+        $("#tab-" + showTab).css("display", "block");
+        $("input").css("background", "#fff");
+    }
+</script>
+
+<script type="text/javascript">
+    //restrict upload file type
+    $('INPUT[type="file"]').change(function () {
+        var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                $('#uploadButton').attr('disabled', false);
+                break;
+            default:
+                alert('Only image file type please!!');
+                this.value = '';
+        }
+
+        // restrict file size in 3 MB
+        if ((this.files[0].size) / 1024 > 3000) {
+            alert("Please check upload image not over 3MB");
+            this.value = '';
+        }
+
+    });
+</script>
+
+<script>
+    document.getElementById("BtnCalculatePremium").addEventListener("click", CalculatePremium, false);
+    function CalculatePremium() {
+        var typeCover = $('#typeOfCover').find(":selected").text();
+        var typeOfUsage = $('#typeOfUsage').find(":selected").text();
+        var vehicleValue = $('input[id=\'vehicleValue\']').val();
+        var premiumRate = $('input[id=\'premiumRate\']').val();
+        var vstartDate = $('input[id=\'insuranceStartDate\']').val();
+        $('input[id=\'premium\']').val("")
+        $('input[id=\'premiumRate\']').val("")
+        console.log(typeCover);
+        console.log(vehicleValue);
+        var premiumTotal;
+        if (typeCover == "Please Select") {
+            alert("Type Cover Required.");
+        } else if (vehicleValue == "") {
+            alert("vehicle Value Required.");
+        } else if (vstartDate == "") {
+            alert("StartDate Value Required.");
+        } else if (typeOfUsage == "Please Select") {
+            alert("Type Of Usage Required.");
+        } else if (typeCover == "Third Party, Fire and Theft" && (typeOfUsage == "Private" || typeOfUsage == "Commercial" || typeOfUsage == "Articulated")) {
+            premiumTotal = Math.round(((5 / 100) * vehicleValue));
+            var TPFT = Math.round(((60 / 100) * premiumTotal));
+            $('input[id=\'premium\']').val(TPFT)
+            $('input[id=\'premiumRate\']').val(60)
+        } else if (typeCover == "Comprehensive" && (typeOfUsage == "Private" || typeOfUsage == "Commercial" || typeOfUsage == "Articulated")) {
+            premiumTotal = Math.round(((5 / 100) * vehicleValue));
+            $('input[id=\'premium\']').val(premiumTotal)
+            var per = 5;
+            $('input[id=\'premiumRate\']').val(per)
+            console.log(per);
+        } else if (typeCover == "Third Party" && typeOfUsage == "Private") {
+            premiumTotal = Math.round(15000);
+            $('input[id=\'premium\']').val(premiumTotal)
+            $('input[id=\'premiumRate\']').val("15000")
+        } else if (typeCover == "Third Party" && typeOfUsage == "Commercial") {
+            premiumTotal = Math.round(20000);
+            $('input[id=\'premium\']').val(premiumTotal)
+            $('input[id=\'premiumRate\']').val(20000)
+        } else if (typeCover == "Third Party" && typeOfUsage == "Commercial") {
+            premiumTotal = Math.round(100000);
+            $('input[id=\'premium\']').val(premiumTotal)
+            $('input[id=\'premiumRate\']').val(100000)
+        }
+
+        var vinsuredName = $('input[id=\'insuredName\']').val();
+        var vstartDate = $('input[id=\'insuranceStartDate\']').val();
+        var vvehicleValue = $('input[id=\'vehicleValue\']').val();
+        var vtdpremiumAmount = $('input[id=\'premium\']').val();
+        var vtypeCover = $('#typeOfCover').find(":selected").text(); 
+        $('#tdInsuredName').html(vinsuredName);
+        $('#tdProductCategory').html("Motor Insurance");
+        $('#tdTypeofCover').html(vtypeCover);
+        $('#tdPaymetFrequency').html("Annually");
+        $('#tdStartDate').html(vstartDate);
+        $('#tdVehicleValue').html(vvehicleValue);
+        $('#tdPremiumAmount').html(vtdpremiumAmount); 
+        console.log(vstartDate)
+    }
+    // Check if button cal has bean clicked
+    document.getElementById("RequestQuote").addEventListener("click", CheckPremium, false);
+    function CheckPremium() {
+        var checkPremium = $('input[id=\'Premium\']').val()
+        if (checkPremium == "") {
+            alert("Please click on the calculate button.");
+        }
+    }
+</script>

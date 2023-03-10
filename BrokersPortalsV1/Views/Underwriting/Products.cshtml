@@ -1,42 +1,80 @@
-﻿@{
+﻿@model BrokersPortalsV1.Models.ProductViewModel.Product
+@{
     ViewData["Title"] = "Products";
 }
 <!-- Product Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card h-100 mb-3 bg-light rounded">
-                <a asp-controller="Underwriting" asp-action="MotorForm">
+        @foreach (var product in Model.data)
+        {
+            <div class="col">
+                <div class="card h-100 mb-3 bg-light rounded">
                     <img src="~/img/vehicle2.jpg" class="card-img-top" alt="Vehicle Insurance Image">
                     <div class="card-body">
-                        <h5 class="card-title">Motor Insurance</h5>
-                        <p class="card-text" style="color:#6c757d">Vehicle insurance is insurance purchased for cars, trucks, motorcycles, and other road vehicles.</p>
+                        <h5 class="card-title">@product.productName</h5>
+                        @if (product.productName == "Motor Policy")
+                        {
+                            <p class="card-text" style="color:#6c757d">Vehicle insurance is insurance purchased for cars, trucks, motorcycles, and other road vehicles.</p>
+                        }
+                        @if (product.productName == "HouseHolder Policy")
+                        {
+                            <p class="card-text" style="color:#6c757d">This policy protects your home, household content, and personal items against fire, burglary, and theft, all risk, and liability.</p>
+                        }
+                        @if (product.productName == "Travel Agent Insurance")
+                        {
+                            <p class="card-text" style="color:#6c757d">Getting insurance for travel agents is a great way to protect yourself while ensuring your agency continues to provide beneficial services to your clients.</p>
+                        }
                     </div>
-                </a>
+                    <div class="row">
+                        <div class="btn-group" role="group" aria-label="...">
+                            @if (product.productName == "Motor Policy")
+                            {
+                                <a asp-controller="Underwriting" asp-action="MotorForm" class="btn btn-primary" asp-route-packageId="@product.id">Single quote</a>
+                                <a asp-controller="Underwriting" asp-action="FleetMotorForm" class="btn btn-primary">Fleet quote</a>
+                            }
+                            @if (product.productName == "HouseHolder Policy")
+                            {
+                                <a asp-controller="Underwriting" asp-action="HouseHolder" class="btn btn-primary">House Holder</a>
+                            }
+                            @if (product.productName == "Travel Agent Insurance")
+                            {
+                                <a asp-controller="Underwriting" asp-action="TravelAgent" class="btn btn-primary">Travel Agent</a>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
+        }
+
+        @* <div class="col">
+        <div class="card h-100 mb-3 bg-light rounded">
+        <img src="~/img/HouseHold.jpg" class="card-img-top" alt="Householder Insurance Image">
+        <div class="card-body">
+        <h5 class="card-title">Householder Insurance</h5>
+        <p class="card-text" style="color:#6c757d">This policy protects your home, household content, and personal items against fire, burglary, and theft, all risk, and liability.</p>
+        </div>
+        <div class="row">
+        <div class="btn-group" role="group" aria-label="...">
+        <a asp-controller="Underwriting" asp-action="HouseHolder" class="btn btn-primary">House Holder</a>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="col">
-            <div class="card h-100 mb-3 bg-light rounded">
-                <a asp-controller="Underwriting" asp-action="Packages"> 
-                    <img src="~/img/HouseHold.jpg" class="card-img-top" alt="Householder Insurance Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Householder Insurance</h5>
-                        <p class="card-text" style="color:#6c757d">This policy protects your home, household content, and personal items against fire, burglary, and theft, all risk, and liability.</p>
-                    </div>
-                </a>
-            </div>
+        <div class="card h-100 mb-3 bg-light rounded">
+        <img src="~/img/travel agent.jpg" class="card-img-top" alt="Travel Agent Insurance Image">
+        <div class="card-body">
+        <h5 class="card-title">Travel Agent Insurance</h5>
+        <p class="card-text" style="color:#6c757d">Getting insurance for travel agents is a great way to protect yourself while ensuring your agency continues to provide beneficial services to your clients.</p>
         </div>
-        <div class="col">
-            <div class="card h-100 mb-3 bg-light rounded">
-                <a asp-controller="Underwriting" asp-action="Packages">
-                    <img src="~/img/travel agent.jpg" class="card-img-top" alt="Travel Agent Insurance Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Travel Agent Insurance</h5>
-                        <p class="card-text" style="color:#6c757d">Getting insurance for travel agents is a great way to protect yourself while ensuring your agency continues to provide beneficial services to your clients.</p>
-                    </div>
-                </a>
-            </div>
+        <div class="row">
+        <div class="btn-group" role="group" aria-label="...">
+        <a asp-controller="Underwriting" asp-action="TravelAgent" class="btn btn-primary">Travel Agent</a>
         </div>
+        </div>
+        </div>
+        </div>*@
     </div>
 </div>
 <!-- Sale & Revenue End -->

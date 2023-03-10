@@ -7,10 +7,13 @@ namespace BrokersPortalsV1.Models
     {
         [Required]
         [DisplayName("Company Id")]
-        public string? CompanyId { get; set; }
+        public string? companyId { get; set; }
         [Required]
         [DisplayName("User Id")]
         public string? UserId { get; set; }
+
+        [DisplayName("User Details")]
+        public string? loginCredential { get; set; }
         [Required]
         public string? Password { get; set; }
     }
