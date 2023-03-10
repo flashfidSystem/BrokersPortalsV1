@@ -5,7 +5,7 @@
         <div class="col-md-12 col-xl-12">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">HouseHolder Insurance</h6>
-                <form class="row" asp-controller="Underwriting" asp-action="MotorForm" autocomplete="off" method="post">                     
+                <form class="row" asp-controller="Underwriting" asp-action="MotorForm" autocomplete="off" method="post">
                     <div class="mb-3 col-xl-6">
                         <label asp-for="property" class="form-label">Property:</label>
                         <span asp-validation-for="property" class="text-danger"></span>
@@ -13,24 +13,24 @@
                             <option selected>Please Select</option>
                             <option value="1">Building</option>
                             <option value="2">Contents</option>
-                            <option value="3">Building and contents</option> 
+                            <option value="3">Building and contents</option>
                         </select>
                     </div>
 
                     <div class="mb-3 col-xl-6">
-                          <label asp-for="typeOfCover" class="form-label">Type of Cover:</label>
+                        <label asp-for="typeOfCover" class="form-label">Type of Cover:</label>
                         <span asp-validation-for="typeOfCover" class="text-danger"></span>
                         <select asp-for="typeOfCover" class="form-select mb-3" aria-label="Default select example">
                             <option value="">Please Select</option>
-                            <option value="1">Fire, Building and Special Perils</option> 
+                            <option value="1">Fire, Building and Special Perils</option>
                         </select>
                     </div>
 
                     <div class="mb-3 col-xl-6">
                         <label asp-for="valueOfBuilding" class="form-label">Value Of Building:</label>
                         <span asp-validation-for="valueOfBuilding" class="text-danger"></span>
-                        <input type="text" asp-for="valueOfBuilding" class="form-control">
-                    </div> 
+                        <input type="number" asp-for="valueOfBuilding" class="form-control">
+                    </div>
                     <div class="mb-3 col-xl-6">
                         <label asp-for="location" class="form-label">Location:</label>
                         <span asp-validation-for="location" class="text-danger"></span>
@@ -41,7 +41,37 @@
                         <span asp-validation-for="purposeOfBuilding" class="text-danger"></span>
                         <input type="text" class="form-control" asp-for="purposeOfBuilding">
                     </div>
-                     
+                    <div class="mb-3 col-xl-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="extensions" onchange="showextensions()" />
+                            <label class="form-check-label" for="extensions">Extensions</label>
+                        </div>
+                        <div class="row divExtensions">
+                            <div class="mb-3 col-xl-6">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           value=""
+                                           asp-for="occupiersLiabilityInsurance" />
+                                    <label class="form-check-label" asp-for="occupiersLiabilityInsurance">
+                                        Occupiers Liability Insurance
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-xl-6">
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           value=""
+                                           asp-for="additionalperils" />
+                                    <label class="form-check-label" asp-for="additionalperils">
+                                        Additional Perils
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="mb-3  d-flex flex-row-reverse bd-highlight ">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -51,3 +81,12 @@
     </div>
 </div>
 <!-- Form End -->
+<script type="text/javascript">
+    $(".divExtensions").hide();
+    function showextensions() {
+        if ($('#extensions').is(":checked"))
+            $(".divExtensions").show();
+        else
+            $(".divExtensions").hide();
+    }
+</script>
